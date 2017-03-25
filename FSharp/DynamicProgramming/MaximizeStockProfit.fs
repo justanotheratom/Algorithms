@@ -22,20 +22,18 @@ module MaximizeStockProfit =
         | [] | [_] -> failwith "Not enough datapoints"
         | h :: t -> loop h Int32.MinValue t
 
-    [<Test>]
-    let ``Basic Tests`` () =
-        let testData =
-            [ ([5;3;8;0], 5)
-              ([5;4;3;2;1], -1)
-              ([1;2;3;4;3;2;1], 3) ]
-        testData
-        |> List.iter (fun (i, o) -> maxProfit1 i |> should equal o)
+    [<TestFixture>]
+    type Tests () =
 
-    [<Test>]
-    let ``Negative Tests`` () =
-        let testData =
-            [ []
-              [2] ]
-        testData
-        |> List.iter (fun (i) -> (fun () -> maxProfit1 i |> ignore) |> should throw typeof<Exception>)
+        [<Test>]
+        member x.``Basic Tests`` () =
+            [ ([5;3;8;0], 5); ([5;4;3;2;1], -1); ([1;2;3;4;3;2;1], 3) ]
+            |> List.iter (fun (i, o) -> maxProfit1 i |> should equal o)
+
+        [<Test>]
+        member x.``Negative Tests`` () =
+            [ []; [2] ]
+            |> List.iter (fun (i) ->
+                            (fun () -> maxProfit1 i |> ignore)
+                            |> should (throwWithMessage "Not enough datapoints") typeof<Exception>)
 
