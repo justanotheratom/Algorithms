@@ -8,7 +8,7 @@ open FsUnit
 open Fuchu
 
 let maxProfitRecursive p =
-    
+
     let rec loop minSoFar maxProfitSoFar rest =
         match rest with
         | [] -> maxProfitSoFar
@@ -43,28 +43,29 @@ let maxProfitIterative prices =
 [<Tests>]
 let tests =
 
-    let expect input output _ =
-        maxProfitIterative input |> should equal output
+    let expect f input output _ =
+        f input |> should equal output
 
-    let basicTest i (input, output) =
-        testCase (sprintf "%i" i) <| expect input output
+    let basicTest f i (input, output) =
+        testCase (sprintf "%i" i) <| expect f input output
 
-    let shouldFail input _ =
-        (fun () -> maxProfitIterative input |> ignore)
+    let shouldFail f input _ =
+        (fun () -> f input |> ignore)
         |> should (throwWithMessage "Not enough datapoints") typeof<Exception>
 
-    let negativeTest i input =
-        testCase (sprintf "%i" i) <| shouldFail input
+    let negativeTest f i input =
+        testCase (sprintf "%i" i) <| shouldFail f input
 
     testList "MaximizeStockProfit" [
-        testList "Basic" (
-            [ ([2;3], 1); ([3;2], -1); ([5;3;8;0], 5); ([5;4;3;2;1], -1); ([1;2;3;4;3;2;1], 3) ]
-            |> List.mapi basicTest
-        )
-        testList "Negative" (
-            [ []; [2] ]
-            |> List.mapi negativeTest
-        )
+        for f in [ maxProfitRecursive; maxProfitIterative ] do
+            yield testList "Basic" (
+                [ ([2;3], 1); ([3;2], -1); ([5;3;8;0], 5); ([5;4;3;2;1], -1); ([1;2;3;4;3;2;1], 3) ]
+                |> List.mapi (basicTest f)
+            )
+            yield testList "Negative" (
+                [ []; [2] ]
+                |> List.mapi (negativeTest f)
+            )
     ]
 
 (*
