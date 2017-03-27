@@ -7,6 +7,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp", "FSharp\FSharp.fsp
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "DynamicProgramming", "DynamicProgramming\DynamicProgramming.fsproj", "{BB11D1A0-52E6-4E3A-A187-618CBDA13D31}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Misc", "Misc\Misc.fsproj", "{CF1F2F2A-01BE-4745-AA8A-AD071C8D82AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{BB11D1A0-52E6-4E3A-A187-618CBDA13D31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB11D1A0-52E6-4E3A-A187-618CBDA13D31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB11D1A0-52E6-4E3A-A187-618CBDA13D31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF1F2F2A-01BE-4745-AA8A-AD071C8D82AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF1F2F2A-01BE-4745-AA8A-AD071C8D82AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF1F2F2A-01BE-4745-AA8A-AD071C8D82AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF1F2F2A-01BE-4745-AA8A-AD071C8D82AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
