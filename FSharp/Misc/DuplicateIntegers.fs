@@ -19,7 +19,9 @@ module SingleDuplicate =
         let n = c - 1
         let expected = (n * (n + 1)) / 2
         let actual = List.sum l
-        (actual - expected)
+        let dupe = (actual - expected)
+        if ((dupe < 1) || (dupe > n)) then failwith "invalid input"
+        dupe
 
 module Test =
 
