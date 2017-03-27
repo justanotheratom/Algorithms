@@ -57,6 +57,7 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Compile Include="MaximizeStockProfit.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Core">
