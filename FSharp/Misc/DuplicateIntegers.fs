@@ -28,12 +28,44 @@ module SingleDuplicate =
         if ((dupe < 1) || (dupe > n)) then failwith "invalid input"
         dupe
 
+    let usingSwap l =
+
+        let swap (a: _[]) x y =
+            let tmp = a.[x]
+            a.[x] <- a.[y]
+            a.[y] <- tmp
+
+        let c = List.length l
+        if (c < 2) then failwith "invalid input"
+        let n = c - 1
+        let a = Array.ofList l
+        let mutable result = -1
+
+        for i = 1 to n - 1 do
+            let mutable keepLooping = true
+            while keepLooping do
+                keepLooping <-
+                    if (i = a.[i]) then
+                        false
+                    else
+                        if (a.[i] = a.[a.[i]]) then
+                            result <- a.[i]
+                            false
+                        else
+                            swap a i a.[i]
+                            true
+
+        if (result = -1) then failwith "invalid input"
+
+        result
+
+
     [<Tests>]
     let tests =
 
         testList "SingleDuplicate" [
 
-            for f in [ bruteForce; mathy ] do
+            for f in [ bruteForce; mathy; usingSwap ] do
 
                 yield testList "Basic" [
                     testCase "4 Element" (fun _ -> f [1;2;3;2] |> should equal 2)
