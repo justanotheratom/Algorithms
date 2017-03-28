@@ -1,5 +1,10 @@
 ﻿module DuplicateIntegers
 
+open System
+open NUnit.Framework
+open Fuchu
+open FsUnit
+
 module SingleDuplicate =
 
     // Input  : A list with integers in range 1 .. n and one element is a duplicate.
@@ -23,19 +28,12 @@ module SingleDuplicate =
         if ((dupe < 1) || (dupe > n)) then failwith "invalid input"
         dupe
 
-module Test =
-
-    open System
-    open NUnit.Framework
-    open Fuchu
-    open FsUnit
-
     [<Tests>]
     let tests =
 
         testList "SingleDuplicate" [
 
-            for f in [ SingleDuplicate.bruteForce; SingleDuplicate.mathy ] do
+            for f in [ bruteForce; mathy ] do
 
                 yield testList "Basic" [
                     testCase "4 Element" (fun _ -> f [1;2;3;2] |> should equal 2)
