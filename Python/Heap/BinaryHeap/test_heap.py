@@ -1,7 +1,7 @@
 from unittest import TestCase
 from .heap import Heap
 
-class TestBinarySearch(TestCase):
+class TestHeap(TestCase):
 
     def test_insert(self):
         test_heap = Heap()
