@@ -8,6 +8,8 @@ def balancedbrackets(input):
     True
     >>> balancedbrackets('[')
     False
+    >>> balancedbrackets(']')
+    False
     >>> balancedbrackets('[][')
     False
     >>> balancedbrackets('[][]')
@@ -32,6 +34,8 @@ def balancedbrackets(input):
         if c in ['[', '{', '(']:
             s.push(c)
         if c in [']', '}', ')']:
+            if s.isempty():
+                return False
             if (s.pop(), c) not in validPairs:
                 return False
 
